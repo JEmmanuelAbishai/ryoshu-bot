@@ -1,27 +1,39 @@
+from pathlib import Path
+
 import discord
+import discord.ext.commands as commands
+from loguru import logger
 
-class Client(discord.Client):
-    async def on_ready(self):
-        print(f'Logged in as {self.user}')
+from src.core.config import Settings
+from src.database.connection import init_db
 
-    async def on_message(self, message):
-        if message.author == self.user:
-            return
+COGS_PACKAGE = "src.cogs"
+COGS_DIR = Path(__file__).resolve().parent.parent / "cogs"
 
-        if message.content.startswith("hello"):
-            await message.channel.send("Nice to meet ya I.F.")
+class Bot(commands.Bot):
+    def __init__(self, settings: Settings, **kwargs):
+        intents = discord.Intents.default()
+        intents.message_content = True
+        intents.members = True
 
-    async def on_message_edit(self, before, after):
-        if after.author == self.user:
-            return
-        if before.content == after.content:
-            return
-        await after.channel.send(
-            f" N.F.W {after.author.display_name}"
-        )
+        super().__init__(command_prefix=settings.command_prefix, intents=intents, **kwargs) 
+        self.settings = settings
 
-intents = discord.Intents.default()
-intents.message_content = True
+    async def setup_hook(self) -> None:
+        await init_db(self.settings.database_url)
+        await self._load_cogs()
+        logger.info("Bot setup complete.")
 
-client = Client(intents=intents)
-client.run('MTUyOTE3MjczNTM0NTgyMzg3NQ.GtwC2J.PQowDS-sdXTlSaH5hsWAwq4zH1PyVXdnKbsW1k')
+    async def load_cogs(self) -> None:
+        for file in COGS_DIR.glob("*.py"):
+            if file.name.startswith("_"):
+                continue
+            extension = f"{COGS_PACKAGE}.{file.stem}"
+            try:
+                await self.load_extension(extension)
+                logger.info(f"Loaded cog: {extension}")
+            except Exception as exc:
+                logger.error(f"Failed to load cog {extension}: {exc}")
+
+    async def on_ready(self) -> None:
+        logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
