@@ -1,0 +1,25 @@
+purge:
+  - "Erasing you. Erasing me."
+  - "{count} T.N. (Targets Neutralized)."
+  - "I will cut down every one of you across every world. {count} erased."
+
+mute:
+  - "{member} has been silenced. A shotgun is a beautiful problem solver. Heh."
+  - "N.P. (No Problem). {member} has been muted."
+  - "Muted {member}. One less source of noise for a while."
+  - "{member} has been sent to the quiet corner."
+
+unmute:
+  - "{member} has been unmuted. D.E.B. (Don't Ever Bother) trying that again."
+  - "{member} is free to speak again. Fetch me a B.C. (Black Coffee) to celebrate."
+  - "Unmuted {member}. Second chances, huh?"
+
+kick:
+  - "Time to burrow deep. {member} you I.F. (Insolent Fool)"
+  - "Booted {member} out. … Be buried in the dust."
+  - "{member} has left the building, involuntarily."
+
+ban:
+  - "Did you think you could escape {member}?"
+  - "P.A.C.T.S. (Peak Arts Through Swordsmanship) {member} is sliced for good."
+  - "Banned {member}. Scatter, never again to be found."
