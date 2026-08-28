@@ -1,0 +1,26 @@
+missing_permission: 
+  - "Focus on your work... And don't bother me"
+  - "I.D.C. come back when you have the right permissions"
+  - "Scram. I'm trying to focus"
+
+bot_missing_permissions:
+  - "It seems like I can't pull this off"
+  - "N.W. My training routine can't be wrong"
+
+member_not_found:
+  - "I can't find this member"
+  - "	One less source of noise for a while I.G."
+  - "Hey, did you seriously vanish without a word?"
+
+bad_argument:
+  - "W.I. (Wrong Input) That's not how you do it"
+  - "Try again."
+
+cooldown:
+  - "Wait a bit"
+  - "H.I. (How Insolent). I need a break"
+
+generic_error:
+  - "I did as I was told"
+  - "	Not my fault. They assigned me trash gear."
+  - "AFTERWARD. (Artistic failure trounces excitement resoundingly, while all roads drag on)"
