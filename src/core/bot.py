@@ -21,7 +21,7 @@ class Bot(commands.Bot):
 
     async def setup_hook(self) -> None:
         await init_db(self.settings.database_url)
-        await self._load_cogs()
+        await self.load_cogs()
         logger.info("Bot setup complete.")
 
     async def load_cogs(self) -> None:
