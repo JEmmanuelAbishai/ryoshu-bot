@@ -27,7 +27,8 @@ class Moderation(commands.Cog):
         actual_count = max(len(deleted) - 1, 0)
 
         await ctx.send(
-            embed=success_embed(f"🗑️ Deleted {actual_count} message(s).")
+            embed=success_embed(get_response("purge", count=actual_count)),
+            delete_after=5
         )
 
 
