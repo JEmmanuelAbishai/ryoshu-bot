@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 
 from src.core.exceptions import InvalidDurationError
-from src.core.exceptions import InvalidDurationError
 from src.personality.responses import get_response
 from src.utils.embeds import error_embed, success_embed
+from src.utils.time_parser import parse_duration
 
 
 class Moderation(commands.Cog):
