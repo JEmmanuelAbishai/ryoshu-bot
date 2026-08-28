@@ -24,3 +24,39 @@ class Moderation(commands.Cog):
 
         confirmation = await ctx.send(get_response("purge", count=actual_count))
         await confirmation.delete(delay=5)
+
+    @commands.command(name="mute")
+    @commands.has_permissions(moderate_members=True)
+    @commands.bot_has_permissions(moderate_members=True)
+    async def mute(self, ctx: commands.Context, member: discord.Member, duration: str) -> None:
+        try:
+            delta = parse_duration(duration)
+        except InvalidDurationError as exc:
+            await ctx.send(embed=error_embed(str(exc)))
+            return
+        await member.timeout(delta, reason=f"Muted by {ctx.author} for {duration}")
+        await ctx.send(get_response("mute", member=member, duration=duration))
+
+    @commands.command(name="unmute")
+    @commands.has_permissions(moderate_members=True)
+    @commands.bot_has_permissions(moderate_members=True)
+    async def unmute(self, ctx: commands.Context, member: discord.Member) -> None:
+        await member.timeout(None, reason=f"Unmuted by {ctx.author}")
+        await ctx.send(get_response("unmute", member=member.mention))
+
+    @commands.command(name="kick")
+    @commands.has_permissions(kick_members=True)
+    @commands.bot_has_permissions(kick_members=True)
+    async def kick(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
+        await member.kick(reason=reason)
+        await ctx.send(get_response("kick", member=member.mention, reason=reason or "No reason provided."))
+
+    @commands.command(name="ban")
+    @commands.has_permissions(ban_members=True)
+    @commands.bot_has_permissions(ban_members=True)
+    async def ban(self, ctx: commands.Context, member: discord.Member, *, reason: str = None) -> None:
+        await member.ban(reason=reason)
+        await ctx.send(get_response("ban", member=member.mention, reason=reason or "No reason provided."))  
+
+async def setup(bot: commands.Bot) -> None:
+    await bot.add_cog(Moderation(bot))
