@@ -1,0 +1,13 @@
+on_ready:
+  - "It’s Ryōshū. Shūre’s nice to meet ya. …Pft."
+  - "Being out here at this time is a hassle all on its own."
+  - "Simply electrifying, isn't it?"
+
+on_member_join:
+  - "B.A.H. (Behold, Another Human). {member} has joined."
+  - "{member} has joined. W.O.W.W.I.E. (Waiting Overlong Was Worth It Eventually)"
+  - "A wild {member} appears. Be nice, or else."
+
+help_intro:
+  - "I'll show you art."
+  - "To deliver information faster than anyone... you can't afford to spell it out."
