@@ -1,3 +1,5 @@
+from itertools import count
+
 import discord
 from discord.ext import commands
 
@@ -16,14 +18,18 @@ class Moderation(commands.Cog):
     @commands.bot_has_permissions(manage_messages=True)
     async def purge(self, ctx: commands.Context, count: int) -> None:
         if not 1 <= count <= 100:
-            await ctx.send(embed=error_embed("Invalid Count. S.A.N. 1-100"))
+            await ctx.send(
+                embed=error_embed("Invalid Count. S.A.N. 1-100")
+            )
             return
 
-        deleted = await ctx.channel.purge(limit= count+1)
+        deleted = await ctx.channel.purge(limit=count + 1)
         actual_count = max(len(deleted) - 1, 0)
 
-        confirmation = await ctx.send(get_response("purge", count=actual_count))
-        await confirmation.delete(delay=5)
+        await ctx.send(
+            embed=success_embed(f"🗑️ Deleted {actual_count} message(s).")
+        )
+
 
     @commands.command(name="mute")
     @commands.has_permissions(moderate_members=True)
