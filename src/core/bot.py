@@ -37,3 +37,7 @@ class Bot(commands.Bot):
 
     async def on_ready(self) -> None:
         logger.info(f"Logged in as {self.user} (ID: {self.user.id})")
+
+def build_bot(settings: Settings) -> Bot:
+    bot = Bot(settings)
+    return bot
