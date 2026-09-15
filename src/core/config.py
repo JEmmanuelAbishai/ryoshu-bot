@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     command_prefix: str = "r!"
 
     mod_log_channel_id: int
-    tenor_api_key: str
+    giphy_api_key: str | None = None
     database_url: str = "sqlite+aiosqlite:///./database.db"
     log_level: str = "INFO"
 
