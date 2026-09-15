@@ -5,7 +5,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Discord.py](https://img.shields.io/badge/Discord.py-2.3+-5865F2?logo=discord&logoColor=white)](https://discordpy.readthedocs.io)
-[![Tenor API](https://img.shields.io/badge/Tenor-API-FF0000?logo=tenor&logoColor=white)](https://tenor.com)
+[![GIPHY API](https://img.shields.io/badge/GIPHY-API-%238C15E6?logo=giphy&logoColor=white)](https://giphy.com)
 
 <br>
 
@@ -35,7 +35,7 @@
 
 ### Commands
 
-| Command | Action | King's Voice Line Example |
+| Command | Action | Voice Line Example |
 | :--- | :--- | :--- |
 | `!ban @user` | Erase | "T.N. (Target Neutralized)" |
 | `!mute @user` | Silence | "Silence. An art piece speaks only when necessary." |
@@ -52,7 +52,7 @@ graph LR
     A[User Command] --> B[Command Parser]
     B --> C[Moderation Action]
     C --> D[Select Character Quote]
-    D --> E[Fetch Tenor GIF]
+    D --> E[Fetch Giphy GIF]
     E --> F[Discord Channel Response]
   
 ```
@@ -62,7 +62,7 @@ graph LR
 
 ```bash
 # Clone the repository
-git clone https://github.com/JEmmanuelAbishai/phoenix-bot.git
+git clone https://github.com/JEmmanuelAbishai/ryoshu-bot.git
 
 # Install dependencies
 pip install -r requirements.txt
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 2. Configure your tokens:
    ```env
    DISCORD_TOKEN=your_bot_token_here
-   TENOR_API_KEY=your_tenor_key_here
+   GIPHY_API_KEY=your_tenor_key_here
    ```
 3. Launch the bot:
    ```bash
